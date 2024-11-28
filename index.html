@@ -23,9 +23,23 @@
 
         fetch(endpoint)
             .then(pie => pie.json())
-            .then(data => cities.push(...data))
-        
-            
+            .then(data => cities.push(...data));
+    
+        function find(word , cities){
+           return cities.filter(a => {
+                const regex = new RegExp(word, "gi")
+                return a.city.match(regex)
+            })
+        }
+
+        function display(){
+            const array =  find(this.value , cities)
+            console.log(array)
+        }
+        const search = document.querySelector(".search")
+
+        search.addEventListener("change" , display);
+        search.addEventListener("keyup" , display)
         
     </script>
 
